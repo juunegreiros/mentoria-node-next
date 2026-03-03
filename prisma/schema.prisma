@@ -13,13 +13,23 @@ datasource db {
   provider = "postgresql"
 }
 
+model Owner {
+  id        String   @id @default(uuid())
+  name      String
+  phone     String
+
+  patients Patient[]
+
+  createdAt DateTime @default(now())
+}
+
 model Patient {
   id        String   @id @default(uuid())
   name      String
   species   String
 
-  owner     String
-  ownerPhone String
+  ownerId     String
+  owner       Owner    @relation(fields: [ownerId], references: [id], onDelete: Restrict)
 
   createdAt DateTime @default(now())
 }
