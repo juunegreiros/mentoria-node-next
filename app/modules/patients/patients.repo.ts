@@ -25,3 +25,11 @@ export async function createPatient(patient: Patient) {
 
   return patients
 }
+
+export async function getPatientById(id: string) {
+  const patient = await prisma.patient.findUnique({
+    where: { id },
+  })
+
+  return patient
+}
