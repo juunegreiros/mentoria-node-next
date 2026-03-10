@@ -42,3 +42,11 @@ export async function updatePatient(id: string, patient: Partial<Patient>) {
 
   return updatedPatient
 }
+
+export async function deletePatient(id: string) {
+  const deletedPatient = await prisma.patient.delete({
+    where: { id },
+  })
+
+  return deletedPatient
+}
