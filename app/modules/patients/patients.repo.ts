@@ -33,3 +33,12 @@ export async function getPatientById(id: string) {
 
   return patient
 }
+
+export async function updatePatient(id: string, patient: Partial<Patient>) {
+  const updatedPatient = await prisma.patient.update({
+    where: { id },
+    data: patient,
+  })
+
+  return updatedPatient
+}
